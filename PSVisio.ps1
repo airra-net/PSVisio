@@ -33,7 +33,7 @@
 
     Load Microsoft Powershell functions for operate Visio Drawing: 
 
-    . .\PSVisio.v3.2.ps1 
+    . .\PSVisio.ps1 
 #>
 
 # Set Variables

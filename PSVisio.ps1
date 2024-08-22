@@ -27,7 +27,11 @@
     Creation Date:  28.06.2023
     Purpose/Change: Reorganize Draw-VisioItem Function. Add parameter LineWeight.
 
-...
+    Version:        3.4
+    Author:         Andrii Romanenko
+    Website:        blogs.airra.net
+    Creation Date:  22.08.2024
+    Purpose/Change: Reorganize Draw-VisioItem Function. Add parameter LineColor.
    
 .EXAMPLE
 
@@ -291,6 +295,9 @@ Function Draw-VisioItem {
 .PARAMETER LineWeight
     Contour Line thickness size.
 
+.PARAMETER LineColor
+    Contour Line Color.
+
 .PARAMETER Text
     Text Visio Stensils Item.
 
@@ -326,6 +333,12 @@ Function Draw-VisioItem {
     Website:        blogs.airra.net
     Creation Date:  28.06.2023
     Purpose/Change: Reorganize function. Add parameter LineWeight.
+
+    Version:        3.4
+    Author:         Andrii Romanenko
+    Website:        blogs.airra.net
+    Creation Date:  22.08.2024
+    Purpose/Change: Reorganize function. Add parameter LineColor.    
    
 .EXAMPLE
 
@@ -333,7 +346,7 @@ Function Draw-VisioItem {
 
     Draw-VisioItem -Master "Rectangle" -X 6.375 -Y 7.125 -Width 12.2501 -Height 7.25 -FillForegnd "RGB(0,153,204)"`
     -LinePattern 0 -LineWeight "1 pt" -Text "Microsoft Virtual Machine Manager Architecture" -VerticalAlign 0 -ParaHorzAlign 0`
-    -CharSize "20 pt" -CharColor "RGB(255,255,255)" -Fill "RGB(255,255,255)"
+    -CharSize "20 pt" -CharColor "RGB(255,255,255)" -Fill "RGB(255,255,255)" -LineColor "RGB(255,255,255)"
 #>
 
 Param ( 
@@ -363,6 +376,9 @@ Param (
 
     [Parameter()]
     [String]$LineWeight,
+
+    [Parameter()]
+    [String]$LineColor,
 
     [Parameter()]
     [String]$Text,
@@ -427,6 +443,13 @@ If ($LinePattern)
 If ($LineWeight)
 	{
 		$Expression = '$Script:Shape' + $Script:Shape + '.Cells("LineWeight").Formula = "' + $LineWeight + '"'
+		Invoke-Expression $Expression
+	}
+
+# Set Item Line Color Properties
+If ($LineColor)
+	{
+        $Expression = '$Script:Shape' + $Script:Shape + '.Cells("LineColor").FormulaU = "=' +  $LineColor + '"'
 		Invoke-Expression $Expression
 	}
 

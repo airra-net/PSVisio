@@ -32,6 +32,14 @@
     Website:        blogs.airra.net
     Creation Date:  22.08.2024
     Purpose/Change: Reorganize Draw-VisioItem Function. Add parameter LineColor.
+
+    Version:        3.5
+    Author:         Andrii Romanenko
+    Website:        blogs.airra.net
+    Creation Date:  29.08.2024
+    Purpose/Change: Added the previously lost function Resize-VisioPageToFitContents.
+    
+   ...
    
 .EXAMPLE
 
@@ -1010,4 +1018,39 @@ If ($EndArrow)
 		$Expression = '$Script:PolyLine' + $Script:PolyLine + '.Cells("EndArrow").Formula = ' + $EndArrow
 		Invoke-Expression $Expression
 	}
+}
+
+Function Resize-VisioPageToFitContents {
+<#
+.SYNOPSIS
+    Microsoft Powershell function for Resize Active Visio Document Page to Fit Contents.
+
+.DESCRIPTION
+    Microsoft Powershell function for Resize Active Visio Document Page to Fit Contents.
+  
+.NOTES
+    Version:        0.1
+    Author:         Andrii Romanenko
+    Website:        blogs.airra.net
+    Creation Date:  17.09.2007
+    Purpose/Change: Initial script development
+
+...
+
+    Version:        3.2
+    Author:         Andrii Romanenko
+    Website:        blogs.airra.net
+    Creation Date:  01.09.2022
+    Purpose/Change: Reorganize function.
+   
+.EXAMPLE
+
+    Run:
+
+    Resize-VisioPageToFitContents 
+#>
+
+# Resize Page to Fit Contents
+$Script:Page.ResizeToFitContents()
+
 }

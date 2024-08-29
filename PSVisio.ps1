@@ -44,7 +44,12 @@
     Website:        blogs.airra.net
     Creation Date:  29.08.2024
     Purpose/Change: Added the previously lost function Save-VisioDocument.
-    
+
+    Version:        3.7
+    Author:         Andrii Romanenko
+    Website:        blogs.airra.net
+    Creation Date:  29.08.2024
+    Purpose/Change: Added the previously lost function Close-VisioApplication.
    ...
    
 .EXAMPLE
@@ -1099,5 +1104,40 @@ Param (
 # Save Document
 $Expression = '$Script:Document.SaveAs("' + $File + '")'
 Invoke-Expression $Expression
+
+}
+
+Function Close-VisioApplication {
+<#
+.SYNOPSIS
+    Microsoft Powershell function for Close Visio Application.
+
+.DESCRIPTION
+    Microsoft Powershell function for Close Visio Application.
+  
+.NOTES
+    Version:        0.1
+    Author:         Andrii Romanenko
+    Website:        blogs.airra.net
+    Creation Date:  17.09.2007
+    Purpose/Change: Initial script development
+
+...
+
+    Version:        3.2
+    Author:         Andrii Romanenko
+    Website:        blogs.airra.net
+    Creation Date:  01.09.2022
+    Purpose/Change: Reorganize function.
+   
+.EXAMPLE
+
+    Run:
+
+    Close-VisioApplication 
+#>
+
+# Close Visio Application
+$Script:Application.Quit()
 
 }

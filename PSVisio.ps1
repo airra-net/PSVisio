@@ -38,6 +38,12 @@
     Website:        blogs.airra.net
     Creation Date:  29.08.2024
     Purpose/Change: Added the previously lost function Resize-VisioPageToFitContents.
+
+    Version:        3.6
+    Author:         Andrii Romanenko
+    Website:        blogs.airra.net
+    Creation Date:  29.08.2024
+    Purpose/Change: Added the previously lost function Save-VisioDocument.
     
    ...
    
@@ -1052,5 +1058,46 @@ Function Resize-VisioPageToFitContents {
 
 # Resize Page to Fit Contents
 $Script:Page.ResizeToFitContents()
+
+}
+
+Function Save-VisioDocument {
+<#
+.SYNOPSIS
+    Microsoft Powershell function for save Visio Document.
+
+.DESCRIPTION
+    Microsoft Powershell function for save Visio Document.
+  
+.NOTES
+    Version:        0.1
+    Author:         Andrii Romanenko
+    Website:        blogs.airra.net
+    Creation Date:  17.09.2007
+    Purpose/Change: Initial script development
+
+...
+
+    Version:        3.2
+    Author:         Andrii Romanenko
+    Website:        blogs.airra.net
+    Creation Date:  01.09.2022
+    Purpose/Change: Reorganize function.
+   
+.EXAMPLE
+
+    Run:
+
+    Save-VisioDocument -File 'C:\!\Diagram.vsd' 
+#>
+
+Param ( 
+    [Parameter(Mandatory)]
+    [String]$File
+)
+
+# Save Document
+$Expression = '$Script:Document.SaveAs("' + $File + '")'
+Invoke-Expression $Expression
 
 }

@@ -50,6 +50,12 @@
     Website:        blogs.airra.net
     Creation Date:  29.08.2024
     Purpose/Change: Added the previously lost function Close-VisioApplication.
+
+    Version:        3.8
+    Author:         Andrii Romanenko
+    Website:        blogs.airra.net
+    Creation Date:  02.01.2025
+    Purpose/Change: Reorganize function Draw-VisioLine. Add Parameter LinePattern.
    ...
    
 .EXAMPLE
@@ -534,6 +540,9 @@ Function Draw-VisioLine {
 
 .PARAMETER LineColor
     Visio Line Color.
+
+.PARAMETER LinePattern
+    Visio Line Pattern style.
     
 .PARAMETER BeginArrow
     Begin Arrow Visio Line Style.
@@ -555,13 +564,19 @@ Function Draw-VisioLine {
     Website:        blogs.airra.net
     Creation Date:  01.09.2022
     Purpose/Change: Reorganize function
+
+    Version:        3.3
+    Author:         Andrii Romanenko
+    Website:        blogs.airra.net
+    Creation Date:  02.01.2025
+    Purpose/Change: Reorganize function. Add Parameter LinePattern.
    
 .EXAMPLE
 
     Run:
 
     Draw-VisioLine -BeginX 0.3125 -BeginY 10.3438 -EndX 12.4948 -EndY 10.3438 -LineWeight "1 pt"`
-    -LineColor "RGB(255,255,255)" -BeginArrow 4 -EndArrow 4 
+    -LineColor "RGB(255,255,255)" -LinePattern 0 -BeginArrow 4 -EndArrow 4 
 #>
 
 Param ( 
@@ -582,6 +597,9 @@ Param (
 
     [Parameter()]
     [String]$LineColor,
+
+    [Parameter()]
+    [String]$LinePattern,
 
     [Parameter()]
     [String]$BeginArrow,
@@ -607,6 +625,13 @@ If ($LineWeight)
 # Set Line Color Properties
 $Expression = '$Script:Line' + $Script:Line + '.Cells("LineColor").FormulaU = "=' +  $LineColor + '"'
 Invoke-Expression $Expression
+
+# Set Line LinePattern Properties
+If ($LinePattern)
+	{
+		$Expression = '$Script:Line' + $Script:Line + '.Cells("LinePattern").Formula = ' + $LinePattern
+		Invoke-Expression $Expression
+	}
 
 # Set Line Begin Arrow Properties
 If ($BeginArrow)
